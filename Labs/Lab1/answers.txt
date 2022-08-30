@@ -1,0 +1,2 @@
+(1.2) When the child is created, everything is copied from the parent into the memory of the child. Therefore, there exists a num variable in
+both the memory of the child and of the parent. 
