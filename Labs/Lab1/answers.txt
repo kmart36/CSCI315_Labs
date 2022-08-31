@@ -1,2 +1,11 @@
 (1.2) When the child is created, everything is copied from the parent into the memory of the child. Therefore, there exists a num variable in
 both the memory of the child and of the parent. 
+
+(2.1) pid, j, and y are local variables stored in the stack. i and x are global variables stored in the data segment.
+
+(2.2) Both the data and stack segments are copied from the parent to the child process. Changes made in the child are not seen by the parent.
+This confirms that the parent and child have separate memory segments.
+
+(2.4) Yes, if one process closes the file the other can still access it. If a child reads from an "inherited" file, it will not affect what the
+parent reads.
+
