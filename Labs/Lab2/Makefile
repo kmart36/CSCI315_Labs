@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -std=gnu99 -Wall -g #-DDEBUG
 
-EXEC = heap-test
+EXEC = pipe-test heap-test
 
 all: $(EXEC)
 
