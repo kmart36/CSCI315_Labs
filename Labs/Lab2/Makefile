@@ -1,7 +1,7 @@
 CC = gcc
-CFLAGS = -std=gnu99 -Wall -g #-DDEBUG
+CFLAGS = -std=gnu99 -Wall -g -lreadline #-DDEBUG
 
-EXEC = pipe-test heap-test
+EXEC = tokens upper pipes pipe-test heap-test
 
 all: $(EXEC)
 

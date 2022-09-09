@@ -9,6 +9,12 @@
 #define READ_END 0
 #define WRITE_END 1
 
+int Pipe(int pipefd[2]);
+int Read(int fd, void *buf, size_t count);
+int Write(int fd, const void *buf, size_t count);
+pid_t Fork(void);
+
+
 int main(void) {
   char write_msg[BUFFER_SIZE] = "Greetings";
   char read_msg[BUFFER_SIZE];
@@ -33,10 +39,10 @@ int main(void) {
 	close(fd[WRITE_END]);
 	int i = 0;
 	int c;
-	while (c != 0) {
+	do {
 	  c = Read(fd[READ_END], &read_msg[i], 1);
 	  i++;
-	} 
+	} while (c != 0);
 	printf("read %s\n", read_msg);
 	close(fd[READ_END]);
   }

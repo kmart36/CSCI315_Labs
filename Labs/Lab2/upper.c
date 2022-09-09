@@ -10,6 +10,11 @@
 #define READ_END 0
 #define WRITE_END 1
 
+int Read(int fd, void *buf, size_t count);
+int Write(int fd, const void *buf, size_t count);
+int Pipe(int pipefd[2]);
+int Fork(void);
+
 int main(void) {
   char write_msg[BUFFER_SIZE] = "Greetings";
   char read_msg[BUFFER_SIZE];  
@@ -36,12 +41,15 @@ int main(void) {
 	// reading from child-to-parent pipe
 	close(c2p[WRITE_END]);
 	int j = 0;
-	int c;
+	int c = 1;
 	while (c != 0) {
 	  c = Read(c2p[READ_END], &read_msg[j], 1);
+	  if (c != 0) {
+		printf("%c", read_msg[j]);
+	  }
 	  j++;
 	}
-	printf("read %s\n", read_msg);
+	printf("\n");
 	close(c2p[READ_END]);
   }
   else {
