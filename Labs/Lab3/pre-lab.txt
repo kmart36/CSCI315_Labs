@@ -1,0 +1,2 @@
+1. No, they did not follow the order of execution. For my first set of thread outputs, the order of threads that executed was 1, 3, 2. 
+2. No, they do not always repeat in a predictable pattern. Sometimes thread 1 would execute first and sometimes it would execute last. 
