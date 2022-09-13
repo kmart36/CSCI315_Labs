@@ -50,10 +50,12 @@ void *SumExp(void *args_ptr) {
 
 	for (i=myargs_ptr->a; i<myargs_ptr->b; i++) {
 		myargs_ptr->result += pow(i, myargs_ptr->x);
-		
+
+		/*
 		if (myargs_ptr->tid == 1 && myargs_ptr->result > 10)
 		  //exit(1);
 		  execl("/bin/ls", "/bin/ls", ".", (char*) NULL);		
+		*/
 	}
 
 	printf("Thread %d done a= %d, b= %d, x= %lf -> result = %lf\n",
