@@ -1,0 +1,4 @@
+1. undefined reference to 'pow' (already had -lpthread in my Makefile)
+2. I need to use '-lm'
+3. No more undefined references (if I did not already have -lpthread I assume I would get an undefined reference to
+pthread_create)
