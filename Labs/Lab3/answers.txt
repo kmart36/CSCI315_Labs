@@ -19,3 +19,15 @@ the result of each thread's computation.
 5. The thread will start but never finish and it may also interupt the creation/termination of other threads.
 6. The thread will run "/bin/ls" on the current directory and display that in the terminal but the thread will terminate and
 prevent any other threads from being created. 
+
+
+Problem 4
+
+1. No, you cannot guarantee because of context switching. Also, ctime is not a thread-safe function.
+2. The time printed does not print the milliseconds of the current time and since each thread takes milliseconds to run,
+there is a lot of wiggle room for the termination time. You can avoid this by using localtime to produce a struct tm* and
+printing its attributes. Also, the ctime does not print right after the thread ends. I'm not sure if you can avoid this, but
+you can make the prints a bit more organized by having all the termination dates printed at the end/after they are all
+joined together by passing the termination time as one of the struct arguments in myargs_ptr. Lastly, ctime is not a
+thread-safe function which means that the ctime of one thread may override the result of another thread's call to ctime. To
+fix this, you can use ctime_r which saves the buffer to the memory of the thread rather than the library. 

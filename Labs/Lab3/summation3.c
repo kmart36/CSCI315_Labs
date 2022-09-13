@@ -22,6 +22,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <unistd.h>
+#include <time.h>
+#include <sys/time.h>
 
 // structure for thread arguments
 struct thread_args {

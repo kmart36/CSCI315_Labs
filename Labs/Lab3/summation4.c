@@ -71,7 +71,8 @@ void *SumExp(void *args_ptr) {
 
 	gettimeofday(&t_time2, NULL);
 	printf("Total time for thread %d: %li seconds, %li milliseconds\n", myargs_ptr->tid, t_time2.tv_sec - t_time1.tv_sec, t_time2.tv_usec - t_time1.tv_usec);
-	printf("Time at completion for thread %d: %s\n", myargs_ptr->tid, ctime(&t_time2.tv_sec));
+	char buf[50];
+	printf("Time at completion for thread %d: %s\n", myargs_ptr->tid, ctime_r(&t_time2.tv_sec, buf));
 	pthread_exit((void*) args_ptr);
 }
 
