@@ -1,0 +1,21 @@
+Problem 1
+
+All three calls open a pathway for bytes to be read and written. Socket
+requires a domain, type, and protocol which all specify the type of socket
+that is being created while pipe just requires an array for the read and
+write ends to be declared. Open needs a pathname for a file and keeps it open
+for anything to read from until it is closed.
+
+
+Problem 2
+
+1. The address of the program is passed as an argument of the socket
+function.
+2. The bind call binds a local protocol address to the created socket.
+3. The connect call is used by the TCP client to connect to a TCP server.
+4. The listen call converts an unconnected socket into a passive socket which
+listens for incoming connection requests.
+5. The accept call is used to retrieve a connection request and convert it
+into a request.
+6. Echod and echoreq will need to use read and write in order to send bytes to each
+other. 
