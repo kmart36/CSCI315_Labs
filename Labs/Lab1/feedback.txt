@@ -20,7 +20,7 @@ Problem 3 [10/10]
 - [3 points] Each of the three processes (parent, first child, and second child) runs on an infinite loop that prints their identification and an integer value to the terminal.
 - [2 points] Each of the three processes (parent, first child, and second child) maintains its own integer counter independently of the other processes.
 
-Lab 1 : 68/70
+Lab 1 : 66/70
 
 Problem 0 [3/5]
 - Submitted a Makefile that builds all the programs created or modified for the prelab and lab.
@@ -35,6 +35,8 @@ Problem 1 [20/20]
 - [7 points] Submitted file fork-wait.c demonstrates the use of wait or waitpid by making the parent process wait for the child to terminate before itself can terminate.
 
 - [3 points] Submitted file fork-wait.c has the child process making calls to getpit and getppid to obtain and print its pid and its parent’s pid.
+
+-2 : fork-wait: parent process should wait for the child process
 
 Problem 2 [25/25]
 - [4 points] Submitted file answers.txt explains which segment (text, data, heap, or stack) contains the variables pid, x, y, i, and j declared in file fork-data.c.
