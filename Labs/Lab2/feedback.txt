@@ -1,0 +1,33 @@
+------------------------------------------------------------
+Lab 2 -- Feedback
+------------------------------------------------------------
+
+Prelab - 30/30
+
+	Problem 1 - heap-test.c - 15/15
+		a) heap-test works to specification
+
+	Problem 2 - pipe-test.c - 15/15
+		a) pipe-test works to specification [6/6]
+		b) all questions answered correctly - 3 pts per question [9/9]
+
+
+Lab - 70/70
+
+	Problem 1 - pipes.c - 30/30
+		a) Using the Fork wrapper and writing the three additional ones. [10/10]
+		b) Implementing the correct functionality for sending and receiving messages byte-by-byte over the pipe [20/20]
+
+	Problem 2 - upper.c - 20/20
+		a) Using the wrappers defined previously, implementing the correct functionality for sending and receiving messages byte-by-byte over the pipe and using the child process to do the case conversion for the characters in the message. [20/20]
+
+	Problem 3 - tokens.c - 20/20
+		a) Using the wrappers defined previously, implementing the correct functionality for sending and receiving messages between processes according the required protocol, implementing the correct functionality for tokenizing and rebuilding strings. [20/20]
+
+
+
+Makefile - [-10 if not there]
+	-no deduction
+
+
+Lab2 Grade: 100/100
