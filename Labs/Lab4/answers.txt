@@ -1,0 +1,13 @@
+Problem 3
+1. Because when both echoreq and echod are running, they are processes. The communication is between the two programs while
+they are running, aka while they are processes.
+2. Socket functionality is provided by the kernel. The kernel implements up to the transport layer. Networking is not
+necessary for the kernel, but ever since the Internet was invented and came into use, it is unlikely that a Linux system
+would not eventually need to connect to another system.
+3. You should use pipes when you are working on just one system. If you are connecting processes across systems, you should
+use sockets.
+4. gethostbyname(3) will take the host name that we give to the function call and convert it to a host name that can be
+used by struct sockaddr sad structure. It is necessary to convert the host name to an IPv4 address for the connection to the
+socket.
+5. getaddrinfo will eventually replace gethostbyname. This returns an addrinfo struct which contains an Internet address that can be specified using bind
+or connect.
