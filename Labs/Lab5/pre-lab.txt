@@ -1,0 +1,8 @@
+1. Mutex uses locking to prevent threading errors, semaphores use signalling.
+
+2. pthread_mutex_init initializes the referenced mutex with the attributes specified in the call. pthread_mutex_lock locks the referenced mutex and
+returns the mutex object in locked state. pthread_mutex_unlock unlocks the referenced mutex which should be owned by the calling thread. sem_init
+initializes the semaphore at the address provided in the call and initializes it with the values provided with the call. sem_wait locks the semaphore
+referenced in the call. if the semaphore's current value is zero the call blocks and waits until decrement can be performed. sem_post unlocks the
+semaphore referenced in the call.
+
