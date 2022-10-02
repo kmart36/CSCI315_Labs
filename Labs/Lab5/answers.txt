@@ -1,0 +1,3 @@
+1. rand_r is thread safe because the state of the call is saved in seed. With
+just rand, the state is hidden and cannot be accessed/modified by multiple
+threads. 

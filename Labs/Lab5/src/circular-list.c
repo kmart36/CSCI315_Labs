@@ -18,7 +18,15 @@
  */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "circular-list.h" 
+
+#include <semaphore.h>
+#include <pthread.h>
+
+pthread_mutex_t access;
+sem_t full;
+sem_t empty;
 
 int circular_list_create(struct circular_list *l, int size) {
   l->buffer = calloc(size, sizeof(item));
@@ -26,6 +34,11 @@ int circular_list_create(struct circular_list *l, int size) {
   l->end = -1;
   l->elems = 0;
   l->size = size;
+
+  pthread_mutex_init(&access, NULL);
+  sem_init(&empty, 0, size);
+  sem_init(&full, 0, 0);
+  
   return 0;
 }
 
@@ -34,6 +47,9 @@ int circular_list_insert(struct circular_list *l, item i) {
     return -1;
   }
 
+  sem_wait(&empty);
+  pthread_mutex_lock(&access);
+  
   if (l->start == -1) {
     l->start = l->end = 0;
     l->buffer[l->start] = i;
@@ -51,6 +67,9 @@ int circular_list_insert(struct circular_list *l, item i) {
   
   l->elems++;
 
+  pthread_mutex_unlock(&access);
+  sem_post(&full);
+  
   return 0;
 }
 
@@ -59,6 +78,9 @@ int circular_list_remove(struct circular_list *l, item *i) {
     return -1;
   }
 
+  sem_wait(&full);
+  pthread_mutex_lock(&access);
+  
   *i = l->buffer[l->start];
   l->buffer[l->start] = 0;
   l->elems--;
@@ -76,5 +98,8 @@ int circular_list_remove(struct circular_list *l, item *i) {
     l->start++;
   }
 
+  pthread_mutex_unlock(&access);
+  sem_post(&empty);
+  
   return 0;
 }

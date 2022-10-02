@@ -18,7 +18,7 @@
 #
 
 CC = gcc -I ./include
-CFLAGS = -std=gnu99 -Wall -g #-DDEBUG
+CFLAGS = -std=gnu99 -Wall -g -lpthread #-DDEBUG
 
 INC = ./include
 SRC = ./src
@@ -47,6 +47,7 @@ prodcons: $(OBJ)/circular-list.o
 
 adt-test: $(OBJ)/circular-list.o
 	$(CC) $(CFLAGS) $(SRC)/adt-test.c $(OBJ)/circular-list.o -o $(BIN)/adt-test -lpthread
+
 
 .PHONY: clean
 clean:

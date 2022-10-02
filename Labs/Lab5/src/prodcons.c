@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include <stdbool.h> 
 #include <unistd.h>
+#include <pthread.h>
 
 #include "circular-list.h" 
 
@@ -55,17 +56,23 @@ struct circular_list mylist;
 void *producer (void *param) {
   item i;
   unsigned int seed = 1234;
-
-  while (true) {
+  int r;
+  //  int n = 0;
+  while (1) {
+	//n++;
 	/* The following solution to compute the amount of time to sleep
 	 * is incorrect. You MUST fix it. See the "SCALE_FACTOR ..." comment
 	 * section above.
 	 */ 
     // sleep for random period of time
-    usleep(SCALE_FACTOR * rand_r(&seed) / RAND_MAX); 
+	r = rand_r(&seed);
+	//printf("Random Amount of Sleep (producer): %d\n", r);
+    usleep(SCALE_FACTOR * seed / r); 
     
     // generate a random number
-    i = (item) (((double) rand_r(&seed)) / RAND_MAX);
+	r = rand_r(&seed);
+	//printf("Random Item: %d\n", r);
+    i = (item) (((double) r) / RAND_MAX);
 
     if (circular_list_insert(&mylist, i) == -1) {
       printf("PRODUCER: error condition\n");
@@ -78,10 +85,14 @@ void *producer (void *param) {
 void *consumer (void *param) {
   item i;
   unsigned int seed = 999;
-
-  while (true) {
+  int r;
+  //  int n = 0;
+  while (1) {
+	//n++;
     // sleep for random period of time
-    usleep(SCALE_FACTOR * rand_r(&seed) / RAND_MAX);
+	r = rand_r(&seed);
+	//printf("Random Amount of Sleep (consumer): %d\n", r);
+    usleep(SCALE_FACTOR * seed / r);
 
     if (circular_list_remove(&mylist, &i) == -1) {
       printf("CONSUMER: error condition\n");
@@ -94,19 +105,45 @@ void *consumer (void *param) {
 int main (int argc, char *argv[]) {
 
   // get command line arguments
-  
+  if (argc < 4) {
+	printf("Usage: ./prodcons [num_prod] [num_cons] [sleep time]\n");
+	exit(-1);
+  }
   // if error in command line argument usage, terminate with helpful
   // message
+
+  int prods = atoi(argv[1]);
+  int cons = atoi(argv[2]);
+  int sleep_time = atoi(argv[3]);
   
   // initialize buffer
   circular_list_create(&mylist, 20);
   
   // create producer thread(s)
-  
+
+  pthread_t prod_threads[prods];
+  int perr;
+  for (int i = 0; i < prods; i++) {
+	perr = pthread_create(&prod_threads[i], NULL, producer, (void*)&i);
+	if (perr == -1) {
+	  perror("Error: producer thread\n");
+	  exit(-1);
+	}
+  }
   // create consumer thread(s)
-  
+
+  pthread_t con_threads[cons];
+  int cerr;
+  for (int i = 0; i < cons; i++) {
+	cerr = pthread_create(&con_threads[i], NULL, consumer, (void*)&i);
+	if (cerr == -1) {
+	  perror("Error: consumer thread\n");
+	  exit(-1);
+	}
+  }
   // sleep to give time for threads to run
-  
+
+  sleep(sleep_time);
   // exit
   return (0);
 }
