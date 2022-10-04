@@ -1,0 +1,8 @@
+(1.1) I do not observe any problems. Some philosophers are eating at the same time, but they are always philosophers whose
+chopsticks are not shared. Philosophers who are next to each other do not eat at the same time and when one philosopher is
+done eating, the philosopher next to him usually immediately starts eating.
+
+(1.2) Mutual exclusion is happening because only one philosopher can use a chopstick at a time. If a philosopher already has
+one chopstick, he has to wait for another one if the other chopstick is being used, which is resource holding. Nothing is
+forcing the philosopher to drop the chopstick, and the circular wait can occur if all of the chopsticks are being held and
+each philosopher only has one chopstick (ex. They all go for the left chopstick first).
