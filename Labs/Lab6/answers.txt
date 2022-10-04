@@ -9,3 +9,6 @@ each philosopher only has one chopstick (ex. They all go for the left chopstick 
 
 (2.1) I had the philosophers wait between picking up chopsticks to give time for all the philosophers to pick up one,
 therefore making it so no philosophers could have 2 and start eating. 
+
+(3.1) These solutions do not eliminate all deadlocks, as by random chance the philosophers could pick up the chopsticks in
+a way that would create a deadlock, but it greatly reduces the chances. 

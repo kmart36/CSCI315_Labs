@@ -28,12 +28,23 @@ void *Philosopher(void *id) {
 	printf("Philosopher %lld is thinking.\n", n_id);
 	napping(1); 
 	printf("Philosopher %lld is hungry.\n", n_id);
-	pthread_mutex_lock(&chopsticks[n_id]);
-	printf("Philosopher %lld is picking up chopstick %lld\n", n_id, n_id);
-	// The philosophers will wait a long time before picking up another chopstick. This makes it so all of the left chopsticks are picked up before any right ones, creating a deadlock. 
-	napping(10);
-	pthread_mutex_lock(&chopsticks[(n_id + 1) % 5]);
-	printf("Philosopher %lld is picking up chopstick %lld\n", n_id, (n_id + 1) % 5);
+	if (n_id % 2 == 1) {
+	  pthread_mutex_lock(&chopsticks[n_id]);
+	  printf("Philosopher %lld is picking up chopstick %lld\n", n_id, n_id);
+	  // The philosophers will wait a long time before picking up another chopstick. This makes it so all of the left chopsticks are picked up before any right ones, creating a deadlock. 
+	  napping(10);
+	  pthread_mutex_lock(&chopsticks[(n_id + 1) % 5]);
+	  printf("Philosopher %lld is picking up chopstick %lld\n", n_id, (n_id + 1) % 5);
+	}
+	else {
+	  pthread_mutex_lock(&chopsticks[(n_id + 1) % 5]);
+	  printf("Philosopher %lld is picking up chopstick %lld\n", n_id, (n_id + 1) % 5);
+	  // The philosophers will wait a long time before picking up another chopstick. This makes it so all of the left chopsticks are picked up before any right ones, creating a deadlock. 
+	  napping(10);
+	  pthread_mutex_lock(&chopsticks[n_id]);
+	  printf("Philosopher %lld is picking up chopstick %lld\n", n_id, n_id);
+
+	}
 	printf("Philosopher %lld is starting to eat.\n", n_id);
 	napping(1);
 	printf("Philosopher %lld is done eating.\n", n_id);
