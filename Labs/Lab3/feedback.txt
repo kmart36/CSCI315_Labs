@@ -1,0 +1,43 @@
+------------------------------------------------------------
+Lab 3 -- Feedback
+------------------------------------------------------------
+
+Prelab: 30/30
+
+	Problem 1: char-threads.c - [20/20]
+		a) the correct implementation of the char-threads.c program [10/10]
+		b) pre-lab.txt with text describing your observations for (1) and (2) [10/10]
+
+	Problem 2: mytime.c - [10/10]
+		a) the correct implementation of the mytime.c program [10/10]
+	
+Lab: 70/70
+	
+    [up to -10 points] An incorrect or incomplete Makefile to build all programs in lab and pre-lab.
+
+	Problem 1: [15/15]
+		1) In answers.txt: undefined symbols in summation.c. [5/5]
+		2) In answers.txt: linker flag to use the math library [5/5]
+		3) In answers.txt: any remaining undefined symbols? [5/5]
+
+	Problem 2: [20/20]
+		1) In answers.txt: passing arguments to threads [3/3]
+		2) In answers.txt: how calloc may be better than malloc [3/3]
+		3) In answers.txt: thread detached state [3/3]
+		4) In answers.txt: thread synchronization and returning results [3/3]
+		5) In answers.txt: what happens when one thread calls exit [4/4]
+		6) In answers.txt: what happens when one thread calls execl [4/4]
+
+	Problem 3: summation3.c - [15/15]
+		1) Returns time for execution of summation (gettimeofday) [10/10]
+		2) Correct subtraction of time values [5/5]
+
+	Problem 4: summation4.c - [20/20]
+		1) Each thread computes its run time and prints end time with ctime [10/10]
+		2) In answers.txt: is the end time printed reliable? [5/5]
+		3) In answers.txt: what causes problems with ctime and how to avoid it [5/5]
+
+Time should be microsecond
+
+
+Grade: 100/100
