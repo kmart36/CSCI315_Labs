@@ -6,3 +6,6 @@ done eating, the philosopher next to him usually immediately starts eating.
 one chopstick, he has to wait for another one if the other chopstick is being used, which is resource holding. Nothing is
 forcing the philosopher to drop the chopstick, and the circular wait can occur if all of the chopsticks are being held and
 each philosopher only has one chopstick (ex. They all go for the left chopstick first).
+
+(2.1) I had the philosophers wait between picking up chopsticks to give time for all the philosophers to pick up one,
+therefore making it so no philosophers could have 2 and start eating. 
