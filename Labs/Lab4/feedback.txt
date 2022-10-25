@@ -1,0 +1,42 @@
+------------------------------------------------------------
+Lab 4 -- Feedback
+------------------------------------------------------------
+
+Prelab: 30/30
+
+    1) Explain how one program addresses the other program for communication over a TCP socket. [4/4]
+    2) Explain the purpose of the bind(2) call. [4/4]
+    3) Explain the purpose of the connect(2) call. [4/4]
+    4) Explain the purpose of the listen(2) call. [4/4]
+    5) Explain the purpose of the accept(2) call. [4/4]
+    6) Explain how you will be able to send and to receive messages. [5/5]
+
+
+Lab: 65/70
+	
+    Problem 1: [10/10]
+	-correct wrappers for “new” system calls (connect, bind, listen, accept) [6/6]
+	-wrappers for old functions [4/4]
+
+    Problem 2: [25/25]
+	-using system call wrappers [5/5]
+	-correct communication between echod and echoreq [15/15]
+	-correct code to clean up blank spaces [5/5]
+
+-3 : echod should print out message received from echoreq, thereby representing
+   	 the connection between the two
+
+    Problem 3: [20/20]
+	-4 pts for each correct answer.
+
+    Problem 4: [12/15]
+	-correct name resolution using a function other than gethostbyname [10/10]
+	-correct behavior of echoreq2 [3/5]
+
+-2 : connection seems weird, no matter what port number I use I get bad port
+   	 number error
+
+    [up to -10 points] An incorrect or incomplete Makefile to build all programs in the lab assignment.
+
+
+Grade: 95/100
