@@ -1,0 +1,20 @@
+1. A doubly-linked list allows for storage of a size and an address that points to a space in
+memory. Since it's doubly-linked, it allows for us to look at adjacent spaces in memory as
+well.
+
+2. An array of structs would also work.
+
+3. When there is enough memory available for a process, but it is split into pieces in a non-
+contiguous way due to fragmentation. This happens when a method or process is removed.
+
+4. Internal fragmentation is the difference between the allotted and requested memory. This
+happens when the method or process is smaller than the memory.
+
+5. The first job will claim the first available memory with space more than or equal to it's
+size. It is fast in processing but it wastes a lot of memory.
+
+6. The OS searches through all the memory blocks and picks one that is the closest to the
+needed memory for the job. It is memory efficient but it takes a long time.
+
+7. The OS searches for the largest parition of memory and places the process in that hole.
+There is more internal fragmentation but it takes a long time. 
