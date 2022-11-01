@@ -153,11 +153,9 @@ dlist_find_remove(struct dlist *l, void *ptr) {
 	    }
 	    (l->counter)--;
 	  }
-	  
 	  ret_ptr = n->data;
 	  free(n);
 	}
-	
 	return ret_ptr;
 }
 
@@ -250,7 +248,6 @@ dlist_iter_has_prev(struct dlist *l) {
 
 void dlist_print(struct dlist *l) {
   struct dnode *p = l->front;
-  printf("dlist: ");
   while (p != NULL) {
 	printf("--[%li, %p]", p->size, p->data);
 	p = p->next;
