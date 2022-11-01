@@ -1,0 +1,37 @@
+------------------------------------------------------------
+Lab 5 -- Feedback
+------------------------------------------------------------
+
+Prelab: 30/30
+
+	Problem 1: [20/20] - circular-list.c adt-test.c
+		a) Makefile works properly [5/5]
+		b) circular-list.c is completeed and works to specification [10/10]
+		c) adt-test.c properly demonstrates the functionality of circular-list [5/5]
+
+	Problem 2: [10/10] - pre-lab.txt
+		a) Describe succinctly the difference between mutex and semaphore. [5/5]
+		b) Write a couple of sentences to describe each of the six calls listed above. [5/5]
+
+Lab: 66/70
+
+	Part 1: [10/10] - prodcons.c
+		a) proper use of rand_r [5/5]
+		b) properly produces random sleep times [5/5]
+
+	Part 2: [10/10] - answers.txt
+		a) properly explain why rand_r is thread safe [10/10]
+
+	Part 3: [30/30] 
+		a) proper implementation of mutex and semaphore in circular_list_insert [15/15]
+		b) proper implementation of mutex and semaphore in circular_list_remove [15/15]
+
+	Part 4: [20/20] - prodcons.c
+		a) checks to see if there are the proper number of command line arguments [5/5]
+		b) proper implementation in main function [11/15]
+
+-4 : I think when properly implemented, there should not be any error conditions
+     happening, also should label the consumers and producers, the code should
+	 run continuously.
+
+Grade: 96/100

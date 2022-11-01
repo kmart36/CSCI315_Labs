@@ -1,0 +1,33 @@
+------------------------------------------------------------
+Lab 6 -- Feedback
+------------------------------------------------------------
+
+Prelab: 30/30
+
+	Problem: [30/30] - dp.c
+		a) Philosophers work and napping(int t) works properly [15/15]
+		b) Main function works to specifications [15/15]
+
+Lab: 70/70
+
+	Problem 1: [30/30] - problem1.c
+		a) no 2 consecutive philosophers pick up chopsticks at the same time in problem1.c [20/20]
+		b) problem1 output [4/4]
+		c) In answers.txt: question 1.1 [3/3]
+		d) In answers.txt: question 1.2 [3/3]
+
+	Problem 2: [20/20] - problem2.c
+		a) successfully achieve deadlock in problem2.c [12/12]
+		b) output of problem2 [4/4]
+		c) In answers.txt: question 2.1 [4/4]
+
+	Problem 3: [20/20] - problem3-1.c problem3-2.c
+		a) Odd philosophers pick up right first, and even pick up left first in problem3-1.c [8/8]
+		b) Philosophers pick up lowest number chopstick it needs first in problem3-2.c [8/8]
+		c) In answers.txt: question 3.1 [4/4]
+
+
+Makefile up to [-10]
+	a) Makefile compiles all files successfully
+
+Grade: 100/100
