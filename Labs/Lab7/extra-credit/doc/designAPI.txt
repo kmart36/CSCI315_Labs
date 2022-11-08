@@ -1,0 +1,26 @@
+int allocator_init(size_t size);
+
+Description
+The allocator_init() function creates and initializes two doubly-lined lists called free_list and
+allocated_list to keep track of free and allocated memory. If the malloc call used to initialize
+these lists fails, the function returns -1. Otherwise, it will return 0. 
+
+
+void *allocate(int type, size_t size);
+
+Description
+The allocate() function searches through the free list and finds a node of space to allocate
+depending on the allocation policy selected. If type = 0, allocate will find a node based on
+first-fit. If type = 1, allocate will find a node based on best-fit. If type = anything else,
+allocate will find a node based on worst-fit. If allocate tries to allocate size bytes and there is
+no node with size bytes, it will return NULL. Otherwise, it will return a pointer to the allocated
+memory. 
+
+
+int deallocate(void *ptr);
+
+Description
+The deallocate() function searches through the allocated list and finds the node that has the data
+attribute matching the provided pointer. With this node, it is able to use the size attribute of the
+node to add that many bytes back to the free list. If deallocate tries to deallocate a chunk of
+memory that is not allocated, it will return -1. Otherwise, it will return 0.  
