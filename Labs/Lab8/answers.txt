@@ -1,0 +1,35 @@
+1.1) Both kinds of fragmentation are possible with our custom memory allocation. There can also be fragmentation where
+there is contiguous memory if the addresses were in order, but are out of order due to the dnode order.
+
+1.2) We can measure the time it takes for memory to be allocated using the time.h functions. We can also measure how
+useful it is with multithreading by seeing if performance increases with use of multithreading.
+
+1.3)
+total_elems = find total # of nodes
+iter through dlist free_list
+	 total mem += size of node
+average frag = total mem / total nodes
+
+2.1) This will not give us a state of representative fragmentation because it deallocates every
+single time it allocates. To make this a better representation, it should allocate and deallocate
+randomly.
+
+srandom(seed);
+int r = 0;
+int insert = 0;
+int d;
+void *p = NULL;
+
+while (r < requests) {
+	  s = a random number between 100 and 1000;
+
+	  p = allocate(alg, s);
+	  insert++;
+	  
+	  if (s is between 500 and 700) {
+	  	 d = a random number between 0 and insert;
+		 traverse allocated list d times
+		 deallocate(selected node);
+		 insert--;
+	  }
+}
