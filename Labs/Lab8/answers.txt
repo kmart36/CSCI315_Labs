@@ -33,3 +33,6 @@ while (r < requests) {
 		 insert--;
 	  }
 }
+
+2.2) I think Best-Fit worked best in our simulation because it resulted in less fragmentation and it had the lowest SD
+and CI, meaning that the amount of fragmentation did not differ as much from run to run.

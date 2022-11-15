@@ -11,7 +11,7 @@ BIN = ./bin
 vpath %.h ./include
 vpath %.c ./src
 
-EXECS = frag-eval dlisttest alloc-dlist_test memory-test
+EXECS = analysis frag-eval dlisttest alloc-dlist_test memory-test
 
 all: $(EXECS)
 
@@ -38,6 +38,9 @@ memory-test: $(SRC)/memory-test.c $(OBJ)/dnode.o $(OBJ)/dlist.o $(OBJ)/allocator
 
 frag-eval: $(SRC)/frag-eval.c $(OBJ)/allocator.o $(OBJ)/dnode.o $(OBJ)/dlist.o
 	$(CC) $(CFLAGS) $(OBJ)/allocator.o $(OBJ)/dnode.o $(OBJ)/dlist.o $(SRC)/frag-eval.c -o $(BIN)/frag-eval
+
+analysis: $(SRC)/analysis.c $(OBJ)/dnode.o $(OBJ)/dlist.o $(OBJ)/allocator.o
+	$(CC) $(CFLAGS) $(OBJ)/dnode.o $(OBJ)/dlist.o $(OBJ)/allocator.o $(SRC)/analysis.c -o $(BIN)/analysis
 
 .PHONY: clean
 clean:

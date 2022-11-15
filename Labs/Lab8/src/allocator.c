@@ -1,0 +1,135 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <limits.h>
+
+#include "dnode.h"
+#include "dlist.h"
+
+struct dlist *free_list;
+struct dlist *allocated_list;
+int ALLOC_POLI;
+
+int allocator_init(size_t size) {
+  free_list = dlist_create();
+  allocated_list = dlist_create();
+  void *data = malloc(size);
+  if (data == NULL)
+	return -1;
+  dlist_add_front(free_list, data, size);
+  return 0;
+}
+
+void *allocate(int type, size_t size) {
+  struct dnode *n;
+  void *ret_ptr;
+  ALLOC_POLI = type;
+  // 0 for first-fit
+  if (ALLOC_POLI == 0) {
+	struct dnode *comp = free_list->front;
+	int moved = 0;
+	while (moved == 0 && comp != NULL) {
+	  if (comp->size > size) {
+		moved = 1;
+		n = comp;
+	  }
+	  comp = comp->next;
+	}
+	if (moved == 0)
+	  return NULL;
+	if (n->size == size) {
+	  ret_ptr = dlist_find_remove(free_list, n->data);
+	  dlist_add_back(allocated_list, ret_ptr, size);
+	  return ret_ptr;
+	}
+	dlist_add_back(allocated_list, n->data, size);
+	ret_ptr = n->data;
+	n->data += size;
+	n->size -= size;
+  }
+  // 1 for best-fit
+  else if (ALLOC_POLI == 1) {
+	int max = INT_MAX;
+	int moved = 0;
+	struct dnode *comp = free_list->front;
+	while (comp != NULL) {
+	  if (comp->size < max && comp->size >= size) {
+		n = comp;
+		max = n->size;
+		moved = 1;
+	  }
+	  comp = comp->next;
+	}
+	if (moved == 0)
+	  return NULL;
+	if (n->size == size) {
+	  ret_ptr = dlist_find_remove(free_list, n->data);
+	  dlist_add_back(allocated_list, ret_ptr, size);
+	  return ret_ptr;
+	}
+	ret_ptr = n->data;
+   	dlist_add_back(allocated_list, n->data, size);
+	n->data += size;
+	n->size -= size;
+  }
+  // anything else for worst-fit
+  else {
+	int min = 0;
+	int moved = 0;
+	struct dnode *comp = free_list->front;
+	while (comp != NULL) {
+	  if (comp->size > min && comp->size >= size) {
+		n = comp;
+		min = n->size;
+		moved = 1;
+	  }
+	  comp = comp->next;
+	}
+	if (moved == 0)
+	  return NULL;
+	if (n->size == size) {
+	  ret_ptr = dlist_find_remove(free_list, n->data);
+	  dlist_add_back(allocated_list, ret_ptr, size);
+	  return ret_ptr;
+	}
+	ret_ptr = n->data;
+   	dlist_add_back(allocated_list, n->data, size);
+	n->data += size;
+	n->size -= size;
+  }
+  return ret_ptr;
+}
+
+int deallocate(void *ptr) {
+  struct dnode *n;
+  struct dnode *comp = allocated_list->front;
+  while (comp != NULL) {
+	if (ptr == comp->data) {
+	  n = comp;
+	}
+	comp = comp->next;
+  }
+  void *ret_ptr = dlist_find_remove(allocated_list, n->data);
+  if (ret_ptr == NULL) {
+	return -1;
+  }
+  dlist_add_front(free_list, n->data, n->size);
+  return 0;
+}
+
+void print_lists(void) {
+  printf("free_list: ");
+  dlist_print(free_list);
+  printf("allocated_list: ");
+  dlist_print(allocated_list);
+}
+
+double average_frag(void) {
+  double total_size = 0;
+  int total_nodes = dlist_num_elems(free_list);
+  struct dnode *n = free_list->front;
+  while (n != NULL) {
+	total_size += n->size;
+	n = n->next;
+  }
+  return total_size / (double) total_nodes;
+}
