@@ -5,6 +5,8 @@
 #include "wrapper.h"
 #include "wrapper.c"
 
+int enter;
+
 void execute(char **com) {  
   int status;
   int returnStat;
@@ -30,6 +32,7 @@ void execute(char **com) {
 void split(char **com, char *prompt) {
   char *token = NULL;
   int arg = 0;
+  
   while (token = strtok_r(prompt, " ", &prompt)) {
 	if (token[strlen(token) - 1] == ';') {
 	  token[strlen(token) - 1] = 0;
@@ -50,10 +53,27 @@ int main(int argc, char *argv[]) {
   char *com[256];
   
   while (1) {
-	char *prompt = readline("ishell> ");
-
+	char *prompt;
+	if (enter == 1) {
+	  prompt = readline(NULL);
+	}
+	else {
+	  prompt = readline("ishell> ");
+	}
+	if (prompt[0] == '\0') {
+	  enter++;
+	  if (enter == 2) {
+		com[0] = "ls";
+		com[1] = "./";
+		enter = 0;
+		execute(com);
+	  }
+	  continue;
+	}
+	  
 	split(com, prompt);
 
 	execute(com);
+	enter = 0;
   }
 }
