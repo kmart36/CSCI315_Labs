@@ -1,0 +1,37 @@
+------------------------------------------------------------
+Lab 7 -- Feedback
+------------------------------------------------------------
+
+Prelab: 30/30
+
+	Problem 1: [12/12] - answers.txt
+		1) Dicuss whether doubly-linked lists are suitable for use in a custom memory allocator [2/2]
+		2) Propose another data structure for tracking allocated and free memory [2/2]
+		3) Define external fragmentation and give a scenario [1/1]
+		4) Define internal fragmentation and give a scenario [1/1]
+		5) Describe the first-fit allocation policy. Give one advantage and one disadvantage of its use [2/2]
+		6) Describe the best-fit allocation policy. Give one advantage and one disadvantage of its use [2/2]
+		7)Describe the worst-fit allocation policy. Give one advantage and one disadvantage of its use [2/2]
+
+	Problem 2: [18/18]
+		a) Modify dlist/dnode to work with the expanded dnode [9/9]
+		b) dlist_print works properly [4/4]
+		c) src/alloc-dlist_test.c demonstrates correctness [5/5]
+
+Lab: 70/70
+
+	Problem: [70/70] - allocator.h/c memory-test.c
+		a) The correct implementation of allocator_init [12/12]
+		b) designAPI.txt: A clear explanation of the design of your supporting functions for multiple policies [12/12]
+		c) The correct implementation of allocate [12/12]
+		d) Correct modification to the doubly-linked list module given to you, which supports deallocated implementation.[7/7]
+		e) The correct implementation of deallocate [12/12]
+		f) Test file(s) that clearly demonstrate that your program works [15/15]
+
+
+Makefile up to [-10]
+	a) Makefile compiles all files successfully
+
+
+Recieved EC +30
+Grade: 130/100	
