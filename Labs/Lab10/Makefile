@@ -24,12 +24,12 @@ CC = gcc
 
 CFLAGS = -g -Wall
 
-EXE = fdump hexdump file_stat read_dir
+EXE = fdump file_stat read_dir
 
 all: $(EXE)
 
 hexdump.o: hexdump.c hexdump.h
-	$(CC) $(CFLAGS) -c hexdump.c -o hexdump.o
+	$(CC) -c $(CFLAGS) hexdump.c
 
 fdump: fdump.o
 	$(CC) $(CFLAGS) -o fdump fdump.o

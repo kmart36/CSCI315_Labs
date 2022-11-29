@@ -92,8 +92,8 @@ int main(int argc, char *argv[]) {
   if (fstatvfs(fd, &fs_info) == 0) {
       printf("== FILE SYSTEM INFO ============================\n");
       printf(" file system fstatvfs() call successful\n");
-      printf(" file system block size: %d\n", 0); // TO-DO
-      printf(" max. file name length: %d\n", 0); // TO-DO
+      printf(" file system block size: %d\n", (int)fs_info.f_bsize); // TO-DO
+      printf(" max. file name length: %d\n", (int)fs_info.f_namemax); // TO-DO
   } else {
     printf("%s: File system fstatvfs call failed\n", argv[0]);
     exit(-1);
@@ -123,13 +123,13 @@ int main(int argc, char *argv[]) {
     printf(" file protection bits = 0%o\n", mode);
     
     // umode comes from the high 3 bits in mode
-    umode = 0; // TO-DO
+    umode = mode >> 6; // TO-DO
     
     // gmode comes from the middle 3 bits in mode
-    gmode = 0; // TO-DO
+    gmode = (mode >> 3) & 0x7; // TO-DO
     
     // omode comes from the low 3 bits in mode
-    omode = 0; // TO-DO
+    omode = mode & 0x7; // TO-DO
       
     // once you have set umode, gmode, and omode, the code below
     // will construct the right string for you and display it
@@ -152,8 +152,8 @@ int main(int argc, char *argv[]) {
     printf(" file protection mode (u:g:o) = %o:%o:%o\n",
 	   umode, gmode, omode);
     
-    printf(" owner user name = %s\n",""); // TO-DO: man getpwuid 
-    printf(" owner group name = %s\n", ""); // TO-DO: man getgrgid 
+    printf(" owner user name = %s\n", getpwuid(file_info.st_uid)->pw_name); // TO-DO: man getpwuid 
+    printf(" owner group name = %s\n", getgrgid(file_info.st_gid)->gr_name); // TO-DO: man getgrgid 
     
 		// TO-DO: print "mode = x", where x may be:
 		// "regular file"
@@ -165,11 +165,36 @@ int main(int argc, char *argv[]) {
 		// "fifo"
 		// "unknown"
 
-    if (S_ISREG(file_info.st_mode)) { 
-      printf(" mode = regular file\n");
-		} else { // see TO-DO above
-		}
-       
+	char x[25];
+	switch (file_info.st_mode & S_IFMT) {
+    case S_IFBLK:
+	  strcpy(x, "block device");
+	  break;
+    case S_IFCHR:
+	  strcpy(x, "character device");
+	  break;
+    case S_IFDIR:
+	  strcpy(x, "directory");
+	  break;
+    case S_IFIFO:
+	  strcpy(x, "fifo");
+	  break;
+    case S_IFLNK:
+	  strcpy(x, "symbolic link");
+	  break;
+    case S_IFREG:
+	  strcpy(x, "regular file");
+	  break;
+    case S_IFSOCK:
+	  strcpy(x, "socket");
+	  break;
+    default:
+	  strcpy(x, "unknown");
+	  break;
+    }
+
+	printf(" mode = %s\n", x);
+	
     ret_path = realpath(name, resolved_path);
     if (NULL != ret_path) 
       printf(" absolute path = %s\n", ret_path);
