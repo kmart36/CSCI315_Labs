@@ -24,7 +24,7 @@ CC = gcc
 
 CFLAGS = -g -Wall
 
-EXE = fdump file_stat read_dir
+EXE = fdump hexdump file_stat read_dir
 
 all: $(EXE)
 

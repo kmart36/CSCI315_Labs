@@ -1,0 +1,43 @@
+2.1)
+	 PAYLOAD HEXDUMP:
+
+     0000000: 2063 6f75 6e74 6572 2066 6f72 2074 6865    counter for the
+     0000010: 206e 756d 6265 7220 6f66 2062 7974 6573    number of bytes
+     0000020: 2028 6861 6c66 2074 6865 206e 756d 6265    (half the numbe
+     0000030: 7220 6f66 2068 6578 2064 6967 6974 7329   r of hex digits)
+     0000040: 0a00 0000 0000 0000 0000 0000 0000 0000   ................
+     0000050: 0000 0000 0000 0000 0000 0000 0000 0000   ................
+     0000060: ffff ffff 0000 0000 0000 0000 0000 0000   ................
+     0000070: d062 98a3 fd7f 0000 a0e7 1def f87f 0000   .b..............
+
+The program is printing the characters of the file in hex form, grouped together in 2's (i.e. each block corresponds to
+two characters in the file). Then, the readable digits are printed out while the unreadable ones are printed as dots.
+2.2)
+	 PAYLOAD HEXDUMP:
+
+     0000000: 0000 0000 1000 0000 0000 0000 52e5 7464   ............R.td
+     0000010: 0400 0000 000e 0000 0000 0000 000e 6000   ..............`.
+     0000020: 0000 0000 000e 6000 0000 0000 0002 0000   ......`.........
+     0000030: 0000 0000 0002 0000 0000 0000 0100 0000   ................
+     0000040: 0000 0000 2f6c 6962 3634 2f6c 642d 6c69   ..../lib64/ld-li
+     0000050: 6e75 782d 7838 362d 3634 2e73 6f2e 3200   nux-x86-64.so.2.
+     0000060: 0400 0000 1000 0000 0100 0000 474e 5500   ............GNU.
+     0000070: 0000 0000 0300 0000 0200 0000 0000 0000   ................
+
+The program is printing the characters of the file in hex form, grouped together in 2's (i.e. each block corresponds to
+two characters in the file). Then, the readable digits are printed out while the unreadable ones are printed as dots. In
+this file, since it is an executable, most of the file is unreadable with random letters and numbers throughout. The text
+we see is the linker to the linux package.
+
+2.3) In 2.2, most of the characters are nonreadable characters. You can see when you look at an executable file that most
+of it appears to be random characters and symbols. Hexdump.c is a mostly readable file, since it was written with numbers
+and characters, but the executable is for the computer's eyes and does not need to be human readable.
+
+2.4) 
+The file(1) command searches through the file and goes through a series of checks to determine what kind of file it is. The
+first check it goes through is to see if the file contains mostly readable characters, executable gibberish, or "binary"/
+nonprintable. It also has "magic tests" which look for a magic number in a binary executable. This magic number will
+immediately identify itself as a binary executable. If the file cannot be fully determined, it will be identified as
+"data". 
+
+Kerrisk, Michael. Linux man-pages project. https://man7.org/linux/man-pages/man1/file.1.html
