@@ -5,11 +5,19 @@
 #include "wrapper.h"
 #include "wrapper.c"
 
+/* 
+ * For Problem 5, I implemented the linux command that repeats the last used command. To 
+ * use this, type "!!" and hit enter. It will execute the last command that was executed.
+ */
+
+
+
 int enter;
+char **prevCom = NULL;
 
 void execute(char **com) {  
-  int status;
   int returnStat;
+  int status;
   int pid = Fork();
   
   if (pid == 0) {
@@ -25,14 +33,14 @@ void execute(char **com) {
 	while (wait(&status) != pid);
 	if (status == 0) {
 	  printf("[ishell: program terminated successfully]\n");
+	  prevCom = com;
 	}
-  } 
+  }
 }
 
 void split(char **com, char *prompt) {
   char *token = NULL;
   int arg = 0;
-  
   while (token = strtok_r(prompt, " ", &prompt)) {
 	if (token[strlen(token) - 1] == ';') {
 	  token[strlen(token) - 1] = 0;
@@ -70,7 +78,10 @@ int main(int argc, char *argv[]) {
 	  }
 	  continue;
 	}
-	  
+	else if (strcmp(prompt, "!!") == 0) {
+	  execute(prevCom);
+	  continue;
+	}
 	split(com, prompt);
 
 	execute(com);
