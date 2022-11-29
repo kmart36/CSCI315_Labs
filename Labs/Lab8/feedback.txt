@@ -1,0 +1,25 @@
+------------------------------------------------------------
+Lab 8 -- Feedback
+------------------------------------------------------------
+
+Lab: 100/100
+
+	Problem 1: [30/30] - answers.txt, allocator.c/h
+		- What types of fragmentation are possible? [8/8]
+		- Propose two performance metrics that could be used to determine how well the allocator works
+		- average_frag() works to specification w/ proper documentation
+
+	Problem 2: [30/30] - frag-eval.c
+		- Proper anaylsis and critiquing of the given pseudocode [8/8]
+		- Implemenent the algorithm you just designed in frag-eval.c [17/17]
+		- Add a rule to build frag-eval.c [5/5]
+
+	Problem 3: [40/40] - exp-results.pdf
+		- Proper completion of exp-result.pdf [30/30]
+		- Analysis of your findings [10/10]
+
+
+Makefile up to [-10]
+	a) Makefile compiles all files successfully
+
+Grade: 100/100	
