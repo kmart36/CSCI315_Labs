@@ -33,6 +33,7 @@
 #include <pwd.h>
 #include <time.h>
 #include <unistd.h>
+#include <errno.h>
 
 int main(int argc, char *argv[]) {
 
@@ -151,19 +152,36 @@ int main(int argc, char *argv[]) {
     
     printf(" file protection mode (u:g:o) = %o:%o:%o\n",
 	   umode, gmode, omode);
-    
-    printf(" owner user name = %s\n", getpwuid(file_info.st_uid)->pw_name); // TO-DO: man getpwuid 
-    printf(" owner group name = %s\n", getgrgid(file_info.st_gid)->gr_name); // TO-DO: man getgrgid 
-    
-		// TO-DO: print "mode = x", where x may be:
-		// "regular file"
-		// "directory"
-		// "character device"
-		// "block device"
-		// "symbolic link"
-		// "socket"
-		// "fifo"
-		// "unknown"
+
+	struct passwd pwd;
+	struct passwd *resultp;
+	size_t bufsize1 = 50000000;
+	char *buf1 = malloc(bufsize1);
+
+	getpwuid_r(file_info.st_uid, &pwd, buf1, bufsize1, &resultp);
+	char *s = pwd.pw_name;
+
+	printf(" owner user name = %s\n", s); // TO-DO: man getpwuid 
+ 
+	struct group grp;
+	struct group *resultg;
+	size_t bufsize2 = 50000000;
+ 	char *buf2 = malloc(bufsize2);
+
+	getgrgid_r(file_info.st_gid, &grp, buf2, bufsize2, &resultg);
+	char *g = grp.gr_name;
+    printf(" owner group name = %s\n", g); // TO-DO: man getgrgid
+	
+	free(buf1); free(buf2);
+	// TO-DO: print "mode = x", where x may be:
+	// "regular file"
+	// "directory"
+	// "character device"
+	// "block device"
+	// "symbolic link"
+	// "socket"
+	// "fifo"
+	// "unknown"
 
 	char x[25];
 	switch (file_info.st_mode & S_IFMT) {
@@ -206,8 +224,16 @@ int main(int argc, char *argv[]) {
     // fill in the time the last write was made to file
     localtime_r(&(file_info.st_mtime), &time);      
     asctime_r(&time, asctime_str);
-    printf(" time of last modification: %s\n", asctime_str);
-    
+    printf(" time of last modification: %s", asctime_str);
+
+	localtime_r(&(file_info.st_atime), &time);      
+    asctime_r(&time, asctime_str);
+	printf(" time of last access: %s", asctime_str);
+
+	localtime_r(&(file_info.st_ctime), &time);      
+    asctime_r(&time, asctime_str);
+	printf(" time of status change: %s\n", asctime_str);
+	
     fflush(stdout);
     close(fd);
     exit(0);
