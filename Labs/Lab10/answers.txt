@@ -1,0 +1,9 @@
+3.1) Change the system clock to be the ctime and then touch the file.
+
+3.2) Touch the file with -m
+
+3.3) Touch the file with -a
+
+3.4) If file names are too long, it can leak into other data and cause corruption. If you know
+the max file length, you can tell the user what that max is and allocate enough storage for
+it. 
