@@ -24,9 +24,27 @@ CC = gcc
 
 CFLAGS = -g -Wall
 
-EXE = traverse fdump file_stat read_dir
+EXE = sender receiver traverse fdump file_stat read_dir
 
 all: $(EXE)
+
+traverse: traverse.o
+	$(CC) -o traverse traverse.o
+
+traverse.o: traverse.c
+	$(CC) -c $(CFLAGS) traverse.c
+
+receiver: receiver.o
+	$(CC) $(CFLAGS) -o receiver receiver.o -lpthread
+
+receiver.o: receiver.c
+	$(CC) -c $(CFLAGS) receiver.c
+
+sender: sender.o
+	$(CC) $(CFLAGS) -o sender sender.o -lpthread
+
+sender.o: sender.c
+	$(CC) -c $(CFLAGS) sender.c
 
 hexdump.o: hexdump.c hexdump.h
 	$(CC) -c $(CFLAGS) hexdump.c
