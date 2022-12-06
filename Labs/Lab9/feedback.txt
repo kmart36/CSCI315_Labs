@@ -1,0 +1,25 @@
+------------------------------------------------------------
+Lab 9 -- Feedback
+------------------------------------------------------------
+
+Lab: 100/100
+
+	Problem 1: [30/30] - ishell.c
+		- works to specification (cp)
+
+	Problem 2: [15/15] - ishell.c
+		- Properly prints the return status
+
+	Problem 3: [15/15] - ishell.c
+		- Can run two commands delimeted by a semicolon
+
+	Problem 4: [15/15] - ishell.c
+		- [enter][enter] prints the current working directory
+
+	Problem 5: [25/25] - ishell.c
+		- Add your own functionality to ishell
+
+Makefile up to [-10]
+	a) Makefile compiles all files successfully
+
+Grade: 100/100
