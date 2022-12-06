@@ -1,0 +1,31 @@
+------------------------------------------------------------
+Lab 10 -- Feedback
+------------------------------------------------------------
+
+Prelab: 30/30
+
+	Problem 1: [15/15] - fdump.c
+		- Accepts the proper 3 command line arguments [5/5]
+		- Opens [filename] [5/5]
+		- Calls hexdump properly [5/5]
+	
+	Problem 2: [15/15] - prelab.txt
+		- all questions answered
+
+Lab: 70/70
+
+	Problem 1: [20/20] - file_stat.c
+		- works to specification
+
+	Problem 2: [20/20] - traverse.c
+		- works to specification
+
+	Problem 3: [8/8] - answers.txt
+		- all questions answered
+
+	Problem 4: [22/22] - sender.c reciever.c
+
+Makefile up to [-10]
+	a) Makefile compiles all files successfully
+
+Grade: 100/100	
